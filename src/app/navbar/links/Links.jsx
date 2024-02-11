@@ -52,7 +52,7 @@ const Links =() => {
               Sign Out
             </Link>
             {session.user.role === "ADMIN" && ( // ตรวจสอบว่าผู้ใช้เป็น admin หรือไม่
-              <NavLink item={{ title: "AdminDashord", path: "/admin" }} /> // เพิ่มลิงก์ไปยังหน้า /admin เฉพาะ admin เท่านั้น
+              <NavLink item={{ title: "AdminDashboard", path: "/admin" }} /> // เพิ่มลิงก์ไปยังหน้า /admin เฉพาะ admin เท่านั้น
             )}
           </div>
           
