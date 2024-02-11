@@ -2,11 +2,11 @@
 
 import { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
-interface Props {
+interface Propviders {
   children: ReactNode;
 }
 
-const Providers = ({ children }: Props) => {
+const Providers = ({ children }: Propviders) => {
   return <SessionProvider>{children}</SessionProvider>;
 };
 
