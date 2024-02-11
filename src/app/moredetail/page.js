@@ -1,107 +1,81 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Axios from 'axios';
-import { useSearchParams } from "next/navigation";
+import React, { useState, useRef } from 'react';
+import { Backend_URL } from '../lib/Constants';
+import { Button } from '../components/Button';
+import InputBox from '../components/InputBox';
 import Link from 'next/link';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Providers from '../components/Providers'
 import Navbar from '../navbar/Navbar';
-import config from "../utils/config.js";
 
-function Editmenu() {
-  const BASE_URL = config.SERVER_URL;
-  const searchParams = useSearchParams();
-  const cannabisIdParams = searchParams.get("cannabisId");
-  const [cannabisData, setcannabisData] = useState([]);
 
-  const getCannabis = () => {
-    Axios.get(`${BASE_URL}/cannabis/${cannabisIdParams}`)
-      .then((response) => {
-        console.log('response data = ', response.data);
-        setcannabisData(response.data);
-      })
-  }
+const SignupPage = () => {
+  const [data, setData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
 
-  useEffect(() => {
-    getCannabis();
-  }, []);
+  const register = async () => {
+    try {
+      const res = await fetch(`${Backend_URL}/auth/register`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-  const [isSubmitSucceed, setIsSubmitSucceed] = useState(false);
+      if (!res.ok) {
+        alert(res.statusText);
+        return;
+      }
 
-  const handleChange = (event) => {
-    setcannabisData({ ...cannabis, [event.target.name]: event.target.value });
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log(cannabis);
-
-    const bodyData = {
-      name: cannabis.name,
-      image: cannabis.image,
-      detail: cannabis.detail,
-      lc: cannabis.lc,
-      // ตัวแปรอื่น ๆ ที่ต้องการ 
+      const response = await res.json();
+      alert('User Registered!');
+      console.log({ response });
+    } catch (error) {
+      console.error('Error during registration:', error);
     }
-
-  }
+  };
 
   return (
     <>
-      <Navbar />
-      <div className="h-screen">
-        <div className="bg-white">
-          <br />
-
-          <Container maxWidth="md">
-            <Grid container spacing={2}>
-              <Grid item xs={6} sm={6} md={6} lg={6} >
-                <Card sx={{ maxWidth: 350 }} key={cannabisData.id}>
-                  <CardMedia
-                    sx={{ height: 180 }}
-                    image={cannabisData.image}
-                    title="green cannabis"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" >
-                      {cannabisData.name}
-
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" >
-
-                      {cannabisData.detail}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      onClick={() => window.open(cannabisData.lc, '_blank')}
-                    >
-                      Google Maps
-                   
-                   </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            </Grid>
-          </Container>
-
-          <div className="flex justify-center align-middle gap-4 mt-10">
-            <Link href={{ pathname: '/postpage' }} passHref>
-              <Button className="btn px-12">ย้อนกลับ</Button>
-            </Link>
-          
-          </div>
+    <Providers>
+        <Navbar />
+        </Providers>
+    <div className="m-2 border rounded overflow-hidden shadow">
+      <div className="p-2 bg-gradient-to-b from-white to-slate-200 text-slate-600">
+        Sign up
+      </div>
+      <div className="p-2 flex flex-col gap-6">
+        <InputBox
+          autoComplete="off"
+          name="name"
+          labelText="Name"
+          required
+          onChange={(e) => setData({ ...data, name: e.target.value })}
+        />
+        <InputBox
+          name="email"
+          labelText="Email"
+          required
+          onChange={(e) => setData({ ...data, email: e.target.value })}
+        />
+        <InputBox
+          name="password"
+          labelText="Password"
+          type="password"
+          required
+          onChange={(e) => setData({ ...data, password: e.target.value })}
+        />
+        <div className="flex justify-center items-center gap-2">
+          <Button onClick={register}>Submit</Button>
+          <Link href="/">Cancel</Link>
         </div>
       </div>
+    </div>
     </>
   );
-}
+};
 
-export default Editmenu;
+export default SignupPage;

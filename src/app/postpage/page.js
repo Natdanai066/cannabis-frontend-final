@@ -44,7 +44,8 @@ const Postpage = () => {
       };
 
       return (
-<body>
+        
+<>
 <Providers>
         <Navbar />
         </Providers>
@@ -89,7 +90,7 @@ const Postpage = () => {
                 </Grid>
               </Container>
     
-             </body>
+             </>
       )
 }
 export default Postpage;

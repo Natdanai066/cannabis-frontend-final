@@ -3,10 +3,20 @@ import NextAuth from "next-auth";
 declare module "next-auth" {
   interface Session {
     user: {
+      ADMIN: any;
+      accessToken: any;
       id: number;
       email: string;
       name: string;
+      role: string;
     };
+
+    admin:{
+      id: number;
+      email: string;
+      name: string;
+      role: Admin;
+    }
 
     backendTokens: {
       accessToken: string;
@@ -24,7 +34,15 @@ declare module "next-auth/jwt" {
       id: number;
       email: string;
       name: string;
+      role: user;
     };
+
+    admin:{
+      id: number;
+      email: string;
+      name: string;
+      role: Admin;
+    }
 
     backendTokens: {
       accessToken: string;

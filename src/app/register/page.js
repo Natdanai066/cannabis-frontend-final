@@ -16,6 +16,7 @@ import { useFormState } from "react-dom";
 import { register } from "../lib/actions"
 import Navbar from "../navbar/Navbar.jsx"
 import styles from "./registerForm.module.css";
+import Providers from '../components/Providers'
 
 function Register() {
   
@@ -74,7 +75,9 @@ function Register() {
     return (
       
       <CssVarsProvider>
-      <Navbar />
+      <Providers>
+        <Navbar />
+        </Providers>
       <br/>
       <main>
         <Sheet
@@ -103,8 +106,8 @@ function Register() {
             <FormLabel>username</FormLabel>
             <Input
               name="name"
-              type="name"
-              placeholder="johndoe@email.com"
+              type="text"
+              placeholder=""
               onChange={handleChange}
               required
             />
@@ -125,7 +128,6 @@ function Register() {
               name="password"
               type="password"
               placeholder="your password"
-             
               onChange={handleChange}
               required
             />
@@ -134,7 +136,7 @@ function Register() {
             Submit
           </Button>
           <Typography
-            endDecorator={<Link href="/login">Login</Link>}
+            endDecorator={<Link href="/api/auth/signin">Login</Link>}
             fontSize="sm"
             sx={{ alignSelf: 'center' }}
           >

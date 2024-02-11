@@ -24,15 +24,17 @@ const EmptyPage = () => {
         <Navbar />
         </Providers>
             <br />
+            <br />
+            <br/>
             <div className={styles.container}>
       <div className={styles.textContainer}>
         <h1 className={styles.title}>Cannabis List.</h1>
+        <br/>
         <p className={styles.desc}>
           This website is Cannabis list in Thailand.
         </p>
         <div className={styles.buttons}>
-          <button className={styles.button} herf="About">Learn More</button>
-          <button className={styles.button}>Contact</button>
+          
         </div>
        
       </div>

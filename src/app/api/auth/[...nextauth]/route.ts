@@ -5,6 +5,7 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 
+
 async function refreshToken(token: JWT): Promise<JWT> {
   const res = await fetch(Backend_URL + "/auth/refresh", {
     method: "POST",
@@ -49,7 +50,6 @@ export const authOptions: NextAuthOptions = {
         });
         if (res.status == 401) {
           console.log(res.statusText);
-
           return null;
         }
         const user = await res.json();
@@ -78,9 +78,18 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
+
+    async admin({ user, account, profile, session }) {
+      if (user && user.isAdmin) {
+        session.isAdmin = true;
+      }
+
+      return session;
+    },
   },
 };
 
 const handler = NextAuth(authOptions);
+
 
 export { handler as GET, handler as POST };

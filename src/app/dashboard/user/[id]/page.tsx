@@ -1,4 +1,4 @@
-import { authOptions } from '../../../auth/[...nextauth]/route';
+import { authOptions } from '../../../api/auth/[...nextauth]/route';
 import { Backend_URL } from "../../../lib/Constants";
 import { getServerSession } from "next-auth";
 

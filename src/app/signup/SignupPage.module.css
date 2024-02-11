@@ -1,0 +1,30 @@
+.container {
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    padding: 10px;
+    background: linear-gradient(to bottom, #fff, #ccc);
+    color: #333;
+  }
+  
+  .form {
+    padding: 10px;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .cancelLink {
+    color: #0070f3; /* เปลี่ยนสีลิงก์เป็นสีน้ำเงิน */
+    text-decoration: none;
+  }
+  

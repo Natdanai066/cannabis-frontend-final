@@ -13,6 +13,7 @@ import config from '../utils/config';
 import { useRouter } from "next/navigation"; // แก้ไขการ import
 import Navbar from '../navbar/Navbar';
 import'../utils/config';
+import { Providers } from '../components/Providers'
 
 function LoginFinal() {
   const BASE_URL = config.SERVER_URL;
@@ -62,7 +63,9 @@ function LoginFinal() {
 
   return (
     <CssVarsProvider>
+      <Providers>
       <Navbar />
+      </Providers>
       <br />
       <main>
         <Sheet
@@ -122,6 +125,7 @@ function LoginFinal() {
           </Typography>
         </Sheet>
       </main>
+     
     </CssVarsProvider>
   );
 }

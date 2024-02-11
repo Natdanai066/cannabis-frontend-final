@@ -23,7 +23,8 @@ const AboutPage = () => {
     <br/>
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h2 className={styles.subtitle}>About Cannabis</h2>
+        <h2 className={styles.subtitle} >About Cannabis</h2>
+        <br/>
         <h1 className={styles.title}>
           We create this website for Canabis Shop in thailand.
         </h1>
