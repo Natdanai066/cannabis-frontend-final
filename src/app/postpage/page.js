@@ -19,78 +19,90 @@ import Providers from '../components/Providers'
 
 
 
+
 const Postpage = () => {
 
-    const BASE_URL = config.SERVER_URL
-    const [cannabisList, setCannabisList] = useState([])
-    const [isDeleted, setIsDeleted] = useState(false)
-    const router = useRouter()
-  
-    const getCannabis = () => {
-      Axios.get(`${BASE_URL}/cannabis`).then((response) => {
-        setCannabisList(response.data)
-      })
-    }
-    useEffect(() => {
-        getCannabis()
-      }, [])
+  const BASE_URL = config.SERVER_URL
+  const [cannabisList, setCannabisList] = useState([])
+  const [isDeleted, setIsDeleted] = useState(false)
+  const router = useRouter()
 
-      const handleOpenGoogleMaps = (id) => {
-        const googleMapsUrl = (cannabis.lc);
-        // แทน YourLocation ด้วยตำแหน่งที่คุณต้องการ
-    
-        // เปิด Google Maps ในหน้าต่างใหม่
-        window.open(googleMapsUrl, '_blank');
-      };
+  const getCannabis = () => {
+    Axios.get(`${BASE_URL}/cannabis`).then((response) => {
+      setCannabisList(response.data)
+    })
+  }
+  useEffect(() => {
+    getCannabis()
+  }, [])
 
-      return (
-        
-<>
-<Providers>
+  const handleOpenGoogleMaps = (id) => {
+    const googleMapsUrl = (cannabis.lc);
+    // แทน YourLocation ด้วยตำแหน่งที่คุณต้องการ
+
+    // เปิด Google Maps ในหน้าต่างใหม่
+    window.open(googleMapsUrl, '_blank');
+  };
+  const handleClick = () => {
+    router.push('/moredetail');
+  };
+
+  return (
+
+    <>
+      <Providers>
         <Navbar />
-        </Providers>
-        
-          
-        <br />
-        <br />
-<Container maxWidth="md">
-                <Grid container spacing={2}>
-                  {cannabisList.length <= 0
-                    ? "ไม่พบข้อมูล!!"
-                    : cannabisList.map((cannabis, index) => (
-                      <Grid item xs={6} sm={4} md={3} lg={4} key={index}>
-                        <Card sx={{ maxWidth: 350 }}>
-                          <CardMedia
-                            sx={{ height: 180 }}
-                            image={cannabis.image}
-                            title="green iguana"
-                          />
-                          <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                              {cannabis.name}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              {cannabis.detail.length > 100 ? `${cannabis.detail.substring(0, 100)}...` : cannabis.detail}
-                            </Typography>
-                          </CardContent>
-                          <CardActions>
-                            <Button
-                              size="small"
-                              onClick={() => window.open(cannabis.lc, '_blank')}
-                            >
-                              Google Maps
-                            </Button>
+      </Providers>
+      <br />
+      <br />
+      <br />
+      <h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '1vh' }}>รายชื่อร้านกัญชา</h1>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Container maxWidth="md">
+        <Grid container spacing={2}>
+          {cannabisList.length <= 0
+            ? "ไม่พบข้อมูล!!"
+            : cannabisList.map((cannabis, index) => (
+              <Grid item xs={6} sm={4} md={3} lg={4} key={index}>
+                <Card sx={{ maxWidth: 350 }}>
+                  <CardMedia
+                    sx={{ height: 180 }}
+                    image={cannabis.image}
+                    title="green iguana"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {cannabis.name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {cannabis.detail.length > 100 ? `${cannabis.detail.substring(0, 100)}...` : cannabis.detail}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      onClick={() => window.open(cannabis.lc, '_blank')}
+                    >
+                      Google Maps
+                    </Button>
 
-                            <Link className="btn btn-info text-blue" href={{ pathname: '/moredetail', query: { cannabisId: cannabis.id } }} >เพิ่มเติม</Link>
+                    <Button onClick={handleClick}>
+                      เพิ่มเติม
+                    </Button>
 
-                          </CardActions>
-                        </Card>
-                      </Grid>
-                    ))}
-                </Grid>
-              </Container>
-    
-             </>
-      )
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+        </Grid>
+      </Container>
+
+    </>
+  )
 }
+
 export default Postpage;

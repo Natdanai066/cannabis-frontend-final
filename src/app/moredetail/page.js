@@ -1,81 +1,60 @@
 "use client";
-import React, { useState, useRef } from 'react';
-import { Backend_URL } from '../lib/Constants';
-import { Button } from '../components/Button';
-import InputBox from '../components/InputBox';
-import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import Providers from '../components/Providers'
 import Navbar from '../navbar/Navbar';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import Axios  from 'axios';
+import config from '../utils/config';
+import Container from '@mui/material/Container';
 
+const moredetail = () => {
+  const BASE_URL = config.SERVER_URL
+  const [cannabisList, setCannabisList] = useState([])
+    
 
-const SignupPage = () => {
-  const [data, setData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+  const getCannabis = () => {
+    Axios.get(`${BASE_URL}/cannabis`).then((response) => {
+      setCannabisList(response.data)
+    })
+  }
+  useEffect(() => {
+      getCannabis()
+    }, [])
+    const cannabis = cannabisList.length > 0 ? cannabisList[0] : null;
 
-  const register = async () => {
-    try {
-      const res = await fetch(`${Backend_URL}/auth/register`, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!res.ok) {
-        alert(res.statusText);
-        return;
-      }
-
-      const response = await res.json();
-      alert('User Registered!');
-      console.log({ response });
-    } catch (error) {
-      console.error('Error during registration:', error);
-    }
-  };
+    const handleOpenGoogleMaps = (id) => {
+      const googleMapsUrl = (cannabis.lc);
+      // แทน YourLocation ด้วยตำแหน่งที่คุณต้องการ
+  
+      // เปิด Google Maps ในหน้าต่างใหม่
+      window.open(googleMapsUrl, '_blank');
+    };
 
   return (
+
     <>
     <Providers>
         <Navbar />
-        </Providers>
-    <div className="m-2 border rounded overflow-hidden shadow">
-      <div className="p-2 bg-gradient-to-b from-white to-slate-200 text-slate-600">
-        Sign up
-      </div>
-      <div className="p-2 flex flex-col gap-6">
-        <InputBox
-          autoComplete="off"
-          name="name"
-          labelText="Name"
-          required
-          onChange={(e) => setData({ ...data, name: e.target.value })}
-        />
-        <InputBox
-          name="email"
-          labelText="Email"
-          required
-          onChange={(e) => setData({ ...data, email: e.target.value })}
-        />
-        <InputBox
-          name="password"
-          labelText="Password"
-          type="password"
-          required
-          onChange={(e) => setData({ ...data, password: e.target.value })}
-        />
-        <div className="flex justify-center items-center gap-2">
-          <Button onClick={register}>Submit</Button>
-          <Link href="/">Cancel</Link>
-        </div>
-      </div>
-    </div>
+      </Providers>
+      <br/>
+    <Container maxWidth="sm">
+      
+       {cannabisList.length <= 0
+                    ? "ไม่พบข้อมูล!!"
+                    : cannabisList.map((cannabis, index) => (
+      <iframe
+        title="Google Maps"
+        width="700"
+        height="700"
+        loading="lazy"
+        allowfullscreen
+        src={cannabis.embed}>
+      </iframe>
+                    ))
+}
+</Container>
     </>
   );
 };
 
-export default SignupPage;
+export default moredetail;

@@ -34,6 +34,7 @@ export default function AdminPage() {
     detail: "",
     lc: "",
     image: "",
+    embed:"",
   });
   const [isSubmitSucceed, setIsSubmitSucceed] = useState(false)
 
@@ -57,6 +58,7 @@ export default function AdminPage() {
         detail: "",
         image: "",
         lc: "",
+        embed:"",
       });
 
       window.location.reload();
@@ -84,14 +86,25 @@ export default function AdminPage() {
   <Navbar />
 </Providers>
 
+<br/>
+<div className="flex">
+        {/* แถบฝั่งซ้าย */}
+        <div className="bg-gray-200 w-1/4 p-4">
+          {/* เนื้อหาแถบฝั่งซ้าย */}
+          <ul>
+            <li><Link href="/editpage">แก้ไขข้อมูล</Link></li>
+           
+          </ul>
+        </div>
+
 <div className="flex justify-center items-center h-screen">
-<div style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px', margin: '20px auto', maxWidth: '275px' }}> 
+<div style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px', margin: '20px auto', maxWidth: '600px' }}> 
     
 <Container maxWidth="sm">
-  <h1 className="text-2xl mb-6 font-bold color-b" style={{ color: 'black' }}>กรอกข้อมูล</h1>
+<h1 className="text-2xl mb-6" style={{ color: 'black', textAlign: 'center' }}>กรอกข้อมูล</h1>
 <br/>
     <form onSubmit={handleSubmit}>
-      <div class="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         <div className="mb-3 col-span-2">
           <label className="form-control w-full">
             <div className="label">
@@ -156,6 +169,23 @@ export default function AdminPage() {
         </div>
       </div>
 <br/>
+<br/>
+        <div className="mb-3 col-span-2">
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text"style={{ color: 'black' }} >ใส่ Embedmaps</span>
+            </div>
+            <input
+              type="text"
+              placeholder="ลิ้งค์ของร้าน"
+              name="embed"
+              className="input input-bordered w-full"
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+        <br/>
       <div className="flex justify-center mt-10">
        
         <button type="Submit" className="btn bg-green-500 text-white px-12 rounded">
@@ -165,6 +195,7 @@ export default function AdminPage() {
       </div>
     </form>
     </Container>
+  </div>
   </div>
   </div>
 

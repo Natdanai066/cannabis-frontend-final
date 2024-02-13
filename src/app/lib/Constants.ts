@@ -1,1 +1,1 @@
-export const Backend_URL = "http://localhost:8000";
+export const Backend_URL = "https://auth-test-37xm.onrender.com";
