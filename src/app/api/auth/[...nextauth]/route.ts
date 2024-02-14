@@ -1,10 +1,7 @@
 import { Backend_URL } from '../../../lib/Constants'; 
-import { NextAuthOptions } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
-import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-
-
 
 async function refreshToken(token: JWT): Promise<JWT> {
   const res = await fetch(Backend_URL + "/auth/refresh", {
@@ -23,7 +20,7 @@ async function refreshToken(token: JWT): Promise<JWT> {
   };
 }
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -89,7 +86,4 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-const handler = NextAuth(authOptions);
-
-
-export { handler as GET, handler as POST };
+export default NextAuth(authOptions);
