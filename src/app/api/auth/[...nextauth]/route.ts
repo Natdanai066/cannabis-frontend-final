@@ -1,8 +1,9 @@
 import { Backend_URL } from '../../../lib/Constants'; 
-import { NextAuthOptions } from "next-auth";
+// import { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
-import NextAuth from "next-auth/next";
+// import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { AuthOptions } from "next-auth";
 
 
 
@@ -23,7 +24,8 @@ async function refreshToken(token: JWT): Promise<JWT> {
   };
 }
 
-export const authOptions: NextAuthOptions = {
+
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -71,6 +73,7 @@ export const authOptions: NextAuthOptions = {
 
       return await refreshToken(token);
     },
+    
 
     async session({ token, session }) {
       session.user = token.user;
@@ -79,13 +82,13 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
 
-    async admin({ user, account, profile, session }) {
-      if (user && user.isAdmin) {
-        session.isAdmin = true;
-      }
+    // async admin({ user, session }) {
+    //   if (user && user.isAdmin) {
+    //     session.isAdmin = true;
+    //   }
 
-      return session;
-    },
+    //   return session;
+    // },
   },
 };
 

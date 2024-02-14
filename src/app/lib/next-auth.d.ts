@@ -12,6 +12,8 @@ declare module "next-auth" {
     };
 
     admin:{
+      ADMIN: any;
+      accessToken: any;
       id: number;
       email: string;
       name: string;
@@ -31,6 +33,8 @@ import { JWT } from "next-auth/jwt";
 declare module "next-auth/jwt" {
   interface JWT {
     user: {
+      ADMIN: any;
+      accessToken: any;
       id: number;
       email: string;
       name: string;
@@ -38,6 +42,8 @@ declare module "next-auth/jwt" {
     };
 
     admin:{
+      ADMIN: any;
+      accessToken: any;
       id: number;
       email: string;
       name: string;
