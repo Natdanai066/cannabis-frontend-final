@@ -5,14 +5,14 @@ import { useSearchParams } from "next/navigation"
 import Link from 'next/link'
 import config from "../utils/config.js"
 import Providers from '../components/Providers'
-import Navbar from '../navbar/Navbar.jsx';
+import Navbar from '../navbar/Navbar';
 import { Container } from "@mui/material";
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 
-function editSlip() {
+function editpost() {
   const BASE_URL = config.SERVER_URL
   const searchParams = useSearchParams()
   const cnbIdParams = searchParams.get("cnbId");
@@ -54,7 +54,7 @@ function editSlip() {
         .then((res) => console.log("Updated Successfully!!"))
         .catch((err) => console.log(err));
 
-      setEmployeeList({
+      setCannabisList({
         name: "",
         lc: "",
         detail: "",
@@ -191,4 +191,4 @@ function editSlip() {
     </>
   );
 }
-export default editSlip;
+export default editpost;
