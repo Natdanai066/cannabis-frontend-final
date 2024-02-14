@@ -21,6 +21,9 @@ const AboutPage = () => {
     <br/>
     <br/>
     <br/>
+    <br />
+            <br />
+            <br/>
     <div className={styles.container}>
       <div className={styles.textContainer}>
         <h2 className={styles.subtitle} >About Cannabis</h2>

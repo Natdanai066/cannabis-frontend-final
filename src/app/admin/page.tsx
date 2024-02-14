@@ -79,6 +79,8 @@ export default function AdminPage() {
     checkAdminStatus();
   }, [router]);
 
+
+  
   return (
     <>
       
@@ -108,89 +110,77 @@ export default function AdminPage() {
         <div className="mb-3 col-span-2">
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text" style={{ color: 'black' }}>ชื่อร้าน</span>
             </div>
-            <input
-              type="text"
-              placeholder="ใส่ชื่อร้าน.."
+            <FormControl>
+            <FormLabel>ชื่อร้าน</FormLabel>
+            <Input
+             
               name="name"
-              className="input input-bordered w-full"
+              type="text"
+              placeholder="ชื่อร้าน.."
               onChange={handleChange}
               required
             />
+          </FormControl>
           </label>
         </div>
         <br/>
-        <div className="mb-3 col-span-2">
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text"style={{ color: 'black' }} >รายละเอียดร้าน</span>
-            </div>
-            <input
+        <FormControl>
+            <FormLabel>รายละเอียดร้าน</FormLabel>
+            <Input
+             
+              name="detail"
               type="text"
               placeholder="กรอกรายละเอียดร้านและที่อยู่.."
-              name="detail"
-              className="input input-bordered w-full"
               onChange={handleChange}
               required
             />
-          </label>
-        </div>
-        <br/>
-        <div className="mb-3 col-span-2">
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text"style={{ color: 'black' }}>location ของร้าน</span>
-            </div>
-            <input
+          </FormControl>
+          <br/>
+          <FormControl>
+            <FormLabel>location ของร้าน</FormLabel>
+            <Input
+             
+              name="lc"
               type="text"
               placeholder="กรอกลิ้งค์ google maps.."
-              name="lc"
-              className="input input-bordered w-full"
               onChange={handleChange}
               required
             />
-          </label>
-        </div>
-        <br/>
-        <div className="mb-3 col-span-2">
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text"style={{ color: 'black' }}>ใส่รูปภาพ</span>
-            </div>
-            <input
-              type="text"
-              placeholder="ใส่รูปภาพเป็นลิ้งค์.."
+          </FormControl>
+          <br/>
+          <FormControl>
+            <FormLabel>ใส่รูปภาพ</FormLabel>
+            <Input
+             
               name="image"
-              className="input input-bordered w-full"
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-      </div>
-<br/>
-<br/>
-        <div className="mb-3 col-span-2">
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text"style={{ color: 'black' }} >ใส่ Embedmaps</span>
-            </div>
-            <input
               type="text"
-              placeholder="ลิ้งค์ของร้าน"
-              name="embed"
-              className="input input-bordered w-full"
+              placeholder="กรอกรายละเอียดร้านและที่อยู่.."
               onChange={handleChange}
               required
             />
-          </label>
-        </div>
+          </FormControl>
+          <br/>
+          <FormControl>
+            <FormLabel>ใส่ Embedmaps</FormLabel>
+            <Input
+             
+              name="embed"
+              type="text"
+              placeholder="ลิ้งค์ของร้าน.."
+              onChange={handleChange}
+              required
+            />
+          </FormControl>
         <br/>
+        
+      </div>
+
       <div className="flex justify-center mt-10">
        
-        <button type="Submit" className="btn bg-green-500 text-white px-12 rounded">
+        <Button type="Submit" className="btn bg-green-500 text-white px-12 rounded">
           บันทึก
-        </button>
+        </Button>
       
       </div>
     </form>

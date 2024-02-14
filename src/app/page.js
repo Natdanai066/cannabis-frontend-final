@@ -26,6 +26,9 @@ const EmptyPage = () => {
             <br />
             <br />
             <br/>
+            <br />
+            <br />
+            <br/>
             <div className={styles.container}>
       <div className={styles.textContainer}>
         <h1 className={styles.title}>Cannabis List.</h1>

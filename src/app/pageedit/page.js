@@ -6,6 +6,11 @@ import Link from 'next/link'
 import config from "../utils/config.js"
 import Providers from '../components/Providers'
 import Navbar from '../navbar/Navbar.jsx';
+import { Container } from "@mui/material";
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
+import Button from '@mui/joy/Button';
 
 function editSlip() {
     const BASE_URL = config.SERVER_URL
@@ -78,6 +83,7 @@ function editSlip() {
                     {/* เนื้อหาแถบฝั่งซ้าย */}
                     <ul>
                         <li><Link href="/admin">เพิ่มข้อมูล</Link></li>
+                       
                         
                         
                     </ul>
@@ -86,106 +92,98 @@ function editSlip() {
                 <div className="flex justify-center items-center h-screen">
                     <div style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px', margin: '20px auto', maxWidth: '600px' }}>
 
-                    <h1 className="text-2xl mb-6" style={{ color: 'black', textAlign: 'center' }}>แก้ไขข้อมูล</h1>
+                    <Container maxWidth="sm">
+<h1 className="text-2xl mb-6" style={{ color: 'black', textAlign: 'center' }}>กรอกข้อมูล</h1>
+<br/>
+    <form onSubmit={handleSubmit}>
+      <div className="grid grid-cols-3 gap-4">
+        <div className="mb-3 col-span-2">
+          <label className="form-control w-full">
+            <div className="label">
+            </div>
+            <FormControl>
+            <FormLabel>ชื่อร้าน</FormLabel>
+            <Input
+             
+              name="name"
+              type="text"
+              placeholder="ชื่อร้าน.."
+              onChange={handleChange}
+              required
+              value={cannabis.name}
+            />
+          </FormControl>
+          </label>
+        </div>
+        <br/>
+        <FormControl>
+            <FormLabel>รายละเอียดร้าน</FormLabel>
+            <Input
+             
+              name="detail"
+              type="text"
+              placeholder="กรอกรายละเอียดร้านและที่อยู่.."
+              onChange={handleChange}
+              required
+              value={cannabis.detail}
+            />
+          </FormControl>
+          <br/>
+          <FormControl>
+            <FormLabel>location ของร้าน</FormLabel>
+            <Input
+             
+              name="lc"
+              type="text"
+              placeholder="กรอกลิ้งค์ google maps.."
+              onChange={handleChange}
+              required
+              value={cannabis.lc}
+            />
+          </FormControl>
+          <br/>
+          <FormControl>
+            <FormLabel>ใส่รูปภาพ</FormLabel>
+            <Input
+             
+              name="image"
+              type="text"
+              placeholder="กรอกรายละเอียดร้านและที่อยู่.."
+              onChange={handleChange}
+              required
+              value={cannabis.image}
+            />
+          </FormControl>
+          <br/>
+          <FormControl>
+            <FormLabel>ใส่ Embedmaps</FormLabel>
+            <Input
+             
+              name="embed"
+              type="text"
+              placeholder="ลิ้งค์ของร้าน.."
+              onChange={handleChange}
+              required
+              value={cannabis.embed}
+            />
+          </FormControl>
+        <br/>
+        
+      </div>
 
-                        <form onSubmit={handleSubmit}>
-                            <div className="grid grid-cols-3 gap-4">
-                                <div className="mb-3 col-span-3">
-                                    <label className="form-control w-full">
-                                        <div className="label">
-                                            <span className="label-text" style={{ color: 'black' }}>ชื่อร้าน</span>
-                                        </div>
-                                        <input
-                                            type="text"
-                                            placeholder="ใส่ชื่อร้าน"
-                                            name="name"
-                                            className="input input-bordered w-full"
-                                            onChange={handleChange}
-                                            required
-                                            value={cannabis.name}
-                                        />
-                                    </label>
-                                </div>
-                            </div>
-                            <br />
-                            <div className="mb-3 col-span-3">
-                                <label className="form-control w-full">
-                                    <div className="label">
-                                        <span className="label-text" style={{ color: 'black' }}>รายละเอียดร้าน</span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="กรอกรายละเอียดร้านและที่อยู่.."
-                                        name="lc"
-                                        className="input input-bordered w-full"
-                                        onChange={handleChange}
-                                        required
-                                        value={cannabis.lc}
-                                    />
-                                </label>
-                            </div>
-                            <br />
-                            <div className="mb-3 col-span-3">
-                                <label className="form-control w-full">
-                                    <div className="label">
-                                        <span className="label-text" style={{ color: 'black' }}>location ของร้าน</span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="กรอกลิ้งค์ google maps.."
-                                        name="lc"
-                                        className="input input-bordered w-full"
-                                        onChange={handleChange}
-                                        required
-                                        value={cannabis.lc}
-                                    />
-                                </label>
-                            </div>
-                            <br />
-                            <div className="mb-3 col-span-3">
-                                <label className="form-control w-full">
-                                    <div className="label">
-                                        <span className="label-text" style={{ color: 'black' }}>ใส่รูปภาพ</span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="ใส่รูปภาพเป็นลิ้งค์.."
-                                        name="image"
-                                        className="input input-bordered w-full"
-                                        onChange={handleChange}
-                                        required
-                                        value={cannabis.image}
-                                    />
-                                </label>
-                            </div>
-                            <br />
-                            <div className="mb-3 col-span-3">
-                                <label className="form-control w-full">
-                                    <div className="label">
-                                        <span className="label-text" style={{ color: 'black' }}>ใส่ Embedmaps</span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="ลิ้งค์ของร้าน.."
-                                        name="embed"
-                                        className="input input-bordered w-full"
-                                        onChange={handleChange}
-                                        required
-                                        value={cannabis.embed}
-                                    />
-                                </label>
-                            </div>
-                            <br />
-
-                            <div className="flex justify-center mt-10">
-                                <Link href={{ pathname: '/' }} className="btn btn-warning px-12 mr-4">
-                                    ย้อนกลับ
-                                </Link>
-                                <button className="btn btn-success text-white px-12" type="submit">
-                                    แก้ไขข้อมูล
-                                </button>
-                            </div>
-                        </form>
+      <div className="flex justify-center mt-10">
+       
+        <Button type="Submit" className="btn bg-green-500 text-white px-12 rounded">
+          บันทึก
+        </Button>
+        
+        <Link href={{ pathname: '/editpage' }} className="btn px-12" style={{ color: 'blue' }}>
+  ย้อนกลับ
+</Link>
+      
+      </div>
+    </form>
+    </Container>
                     </div>
                 </div>
             </div>
