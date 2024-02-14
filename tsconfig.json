@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/register/page.js", "src/app/admin/page.js", "src/app/navbar/links/Links.jsx"  ],
+, "src/app/register/page.js", "src/app/admin/page.js", "src/app/navbar/links/Links.jsx", "src/app/editpost/page.js"  ],
   "exclude": [
     "node_modules"
   ]

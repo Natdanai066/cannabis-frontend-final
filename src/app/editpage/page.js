@@ -137,7 +137,7 @@ const editpage = () => {
                                         <Button onClick={handleClick}>
                                             เพิ่มเติม
                                         </Button>
-                                        <Link className="btn btn-warning text-white"href={{ pathname: '/editpost', query: { cnbId: cannabis.id } }} >แก้ไข</Link>
+                                      
                                         <Button onClick={() => deleteCannabis(cannabis.id)}style={{ color: 'red' }}>ลบข้อมูล</Button>
                                     </CardActions>
                                 </Card>
