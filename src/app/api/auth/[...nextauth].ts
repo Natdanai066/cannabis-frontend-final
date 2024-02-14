@@ -1,4 +1,4 @@
-import { Backend_URL } from '../../../lib/Constants'; 
+import { Backend_URL } from '../../lib/Constants'; 
 import { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth/next";
