@@ -4,8 +4,8 @@ import Axios from 'axios';
 import { useSearchParams } from "next/navigation"
 import Link from 'next/link'
 import config from "../utils/config.js"
-import Providers from '../components/Providers'
-import Navbar from '../navbar/Navbar';
+import Providers from '../components/Providers.js'
+import Navbar from '../navbar/Navbar.jsx';
 import { Container } from "@mui/material";
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
